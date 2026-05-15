@@ -1,11 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgentJuno</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Hardened — A trusted, sandboxed AI agent for people who care about owning their tools</title>
+  <meta name="description" content="OpenClaw Hardened is a manual installation service for a private AI agent. Sandboxed, EU-hosted, opinionated by default. Yours to operate, not yours to forget.">
+  <meta property="og:title" content="OpenClaw Hardened">
+  <meta property="og:description" content="A trusted, sandboxed AI agent for people who care about owning their tools.">
+  <meta property="og:type" content="website">
+
+  <style>
+    :root {
+      --navy: #0a1e4a;
+      --cream: #f5e9d3;
+      --cream-soft: #faf3e6;
+      --ink: #1a1a1a;
+      --grey: #5a5a5a;
+      --grey-light: #d4d0c8;
+      --rule: #e5dfd1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      background: var(--cream-soft);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 18px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 32px 80px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 40px 0 60px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 60px;
+    }
+
+    .logo-mark {
+      width: 96px;
+      height: 96px;
+      background: var(--navy);
+      border-radius: 16px;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 60px;
+      color: var(--cream);
+      font-weight: 400;
+      line-height: 1;
+      padding-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--navy);
+    }
+
+    .tagline {
+      font-size: 19px;
+      color: var(--grey);
+      font-style: italic;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    section { margin-bottom: 56px; }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 28px 0 10px;
+    }
+
+    p { margin-bottom: 16px; }
+
+    a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover { text-decoration-thickness: 2px; }
+
+    /* The opener — pulled-quote style */
+    .opener {
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--navy);
+      border-left: 3px solid var(--navy);
+      padding: 4px 0 4px 24px;
+      margin: 32px 0;
+      font-style: italic;
+    }
+
+    /* Tiers table */
+    .tiers {
+      border-top: 1px solid var(--rule);
+      margin-top: 20px;
+    }
+
+    .tier {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+    }
+
+    .tier-price {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .tier-price small {
+      display: block;
+      font-size: 13px;
+      color: var(--grey);
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    .tier-name {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+
+    .tier-desc {
+      font-size: 16px;
+      color: var(--grey);
+    }
+
+    /* Principles list */
+    .principles {
+      list-style: none;
+      padding: 0;
+    }
+
+    .principles li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .principles li:last-child { border-bottom: none; }
+
+    .principles strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .principles span {
+      color: var(--grey);
+      font-size: 16px;
+    }
+
+    /* CTA box */
+    .cta {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 40px 32px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 48px 0;
+    }
+
+    .cta h2 {
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: var(--cream);
+      opacity: 0.85;
+      max-width: 440px;
+      margin: 0 auto 24px;
+      font-size: 16px;
+    }
+
+    .cta a {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--navy);
+      padding: 14px 28px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .cta a:hover {
+      background: #fff;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    footer p { margin-bottom: 6px; }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      .container { padding: 40px 24px 60px; }
+      h1 { font-size: 28px; }
+      .tagline { font-size: 17px; }
+      .opener { font-size: 18px; padding-left: 20px; }
+      .tier { grid-template-columns: 1fr; gap: 8px; }
+      .tier-price { font-size: 20px; }
+      body { font-size: 17px; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to AgentJuno</h1>
+  <div class="container">
+
+    <header>
+      <div class="logo-mark">J</div>
+      <h1>OpenClaw Hardened</h1>
+      <p class="tagline">A trusted, sandboxed AI agent for people who care about owning their tools.</p>
+    </header>
+
+    <section>
+      <p>You've seen the demos. The "personal AI" that books your calendar, drafts your emails, watches your inbox while you sleep. It's an exciting category. It's also a category where most installations are quietly insecure, leak data they shouldn't, and run unattended cron jobs the owner forgot existed.</p>
+
+      <p>OpenClaw Hardened is the version that isn't.</p>
+
+      <div class="opener">
+        We install OpenClaw on your own server, lock it down by hand, give it a documented contract about what it will and won't do, and hand you back the keys.
+      </div>
+
+      <p>You own everything. We disappear after the install. The agent runs in the EU on infrastructure you control, sandboxed from the rest of your system, with explicit refusal rules for the things agents tend to get wrong.</p>
+    </section>
+
+    <section>
+      <h2>What you actually get</h2>
+
+      <ul class="principles">
+        <li>
+          <strong>A working agent, hardened by hand</strong>
+          <span>OpenClaw installed on your own Hetzner VPS (€4.87/month, billed to you), with 14 security defaults most setups miss. Documented and reversible.</span>
+        </li>
+        <li>
+          <strong>A signed contract for your agent</strong>
+          <span>Four short documents — voice, rules, identity, your personal context — that load every session. The agent reads them and follows them. You can edit them.</span>
+        </li>
+        <li>
+          <strong>A manual you can actually read</strong>
+          <span>20-page operator's manual. Plain English. Quick-reference card. Not a wiki. Not a Notion link. A document you can print and hand to a friend.</span>
+        </li>
+        <li>
+          <strong>A Risk Acknowledgment, signed before install</strong>
+          <span>Honest about what we did, what risks remain, who's responsible for what. The opposite of a SaaS Terms of Service.</span>
+        </li>
+        <li>
+          <strong>30 days of post-install support</strong>
+          <span>Anything that breaks in the first month, we fix at no charge. Optional retainer (€49/month) after that for ongoing maintenance.</span>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Pricing</h2>
+
+      <div class="tiers">
+        <div class="tier">
+          <div class="tier-price">€199<small>one-time</small></div>
+          <div>
+            <div class="tier-name">Starter</div>
+            <div class="tier-desc">Hardened install on your Hetzner server. Templated cognitive files. 7-day support window.</div>
+          </div>
+        </div>
+
+        <div class="tier">
+          <div class="tier-price">€399<small>one-time</small></div>
+          <div>
+            <div class="tier-name">Standard</div>
+            <div class="tier-desc">Everything in Starter, plus customized cognitive files (your projects, voice, signature), signed Risk Acknowledgment, 30-day support, and three vetted skills installed.</div>
+          </div>
+        </div>
+
+        <div class="tier">
+          <div class="tier-price">€599<small>one-time<br>+ €49/month</small></div>
+          <div>
+            <div class="tier-name">Pro</div>
+            <div class="tier-desc">Standard plus ongoing maintenance: version migrations, monthly skill audits, monthly spend review, 24-hour response time.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>What this is not</h2>
+
+      <p>OpenClaw Hardened is not a SaaS product. We don't host anything for you. We don't see your data. We don't keep credentials after handover. The server is yours, the keys are yours, and we walk away once it works.</p>
+
+      <p>It's also not a magic productivity hack. It's a tool you'll learn to use over a few weeks. The first three days you'll feel like you're not using it right. By the second week, you'll feel a quiet relief.</p>
+
+      <p>If you want a chatbot, use ChatGPT. If you want an autonomous agent you can trust with non-trivial work, that lives on infrastructure you control, that refuses things it shouldn't do even when you push — keep reading.</p>
+    </section>
+
+    <section>
+      <h2>The principles</h2>
+
+      <ul class="principles">
+        <li>
+          <strong>Less, but tested</strong>
+          <span>We install almost nothing speculatively. Every skill is vetted by hand. Every config decision is documented. The product is restraint.</span>
+        </li>
+        <li>
+          <strong>EU by default</strong>
+          <span>Your data, your server, your jurisdiction. GDPR-protected from day one.</span>
+        </li>
+        <li>
+          <strong>The friction is the feature</strong>
+          <span>The agent asks before doing things that matter. That's not annoyance. That's safety with stakes attached.</span>
+        </li>
+        <li>
+          <strong>You own it; you operate it</strong>
+          <span>This isn't a magic device. It's a tool you check in on for five minutes a week. We handed you the keys; we're not your IT department unless you put us on retainer.</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="cta">
+      <h2>Want one of these?</h2>
+      <p>Email us. We'll have a 20-minute call to see if it's a fit. No commitment, no sales pitch.</p>
+      <a href="mailto:junotheclawagent@gmail.com">junotheclawagent@gmail.com</a>
+    </div>
+
+    <footer>
+      <p>OpenClaw Hardened is operated by Reehanul Karim, based in Milan, Italy.</p>
+      <p>Built carefully. Sold honestly. Updated when something changes.</p>
+    </footer>
+
+  </div>
 </body>
 </html>
