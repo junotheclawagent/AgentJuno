@@ -678,57 +678,98 @@
       font-weight: 700;
     }
 
-    /* Free-tier variant: muted, signals on-ramp */
-    .price-card.free {
+    /* Pricing hero (the framing block that opens the section) */
+    .pricing-hero {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 40px 48px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: 0 4px 20px -8px rgba(10, 30, 74, 0.06);
+    }
+
+    .pricing-hero-text {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .pricing-hero-text strong {
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .pricing-hero-text em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .pricing-hero-cta {
+      text-align: center;
+      padding: 24px;
       background: var(--cream-soft);
+      border-radius: 8px;
       border: 1px dashed var(--grey-light);
     }
 
-    .price-card.free .price-tag {
-      color: var(--grey);
-      font-size: 32px;
+    .pricing-hero-cta-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
-    .price-card.free .price-tag small {
-      color: var(--grey);
-    }
-
-    .price-card.free .featured-tag {
-      background: var(--navy);
-    }
-
-    /* "What you're paying for" framing line */
-    .pricing-framing {
-      background: white;
-      border: 1px solid var(--rule);
-      border-left: 3px solid var(--accent);
-      padding: 20px 24px;
-      margin-bottom: 32px;
-      font-size: 16px;
-      color: var(--ink);
-      line-height: 1.55;
-      font-style: italic;
-    }
-
-    .pricing-framing strong {
-      font-style: normal;
+    .pricing-hero-cta-price {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 36px;
       color: var(--navy);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 6px;
     }
 
-    /* Pricing grid now needs to fit 4 cards */
+    .pricing-hero-cta-desc {
+      font-size: 13px;
+      color: var(--grey);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .pricing-hero-cta a {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--cream);
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .pricing-hero-cta a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(10, 30, 74, 0.2);
+    }
+
+    /* Pricing grid: 3 paid tiers only */
     .pricing {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
     }
 
-    @media (max-width: 1000px) {
-      .pricing {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 900px) {
+      .pricing-hero {
+        grid-template-columns: 1fr;
+        padding: 32px;
       }
-    }
-
-    @media (max-width: 600px) {
       .pricing {
         grid-template-columns: 1fr;
       }
@@ -1029,27 +1070,21 @@
   <section id="pricing">
     <div class="section-eyebrow">Pricing</div>
     <h2 class="section-title">Start free. Pay when you're ready.</h2>
-    <p class="section-intro">One-time install fees on the paid tiers. Optional monthly retainer for ongoing maintenance. Cancel anytime; the server stays yours.</p>
 
-    <div class="pricing-framing">
-      <strong>You're not paying for the bot.</strong> You're paying for someone to spend a day hardening it correctly — and a manual you can hand to your future self.
+    <div class="pricing-hero">
+      <div class="pricing-hero-text">
+        <strong>You're not paying for the bot.</strong> You're paying for someone to spend a day hardening it correctly — <em>and a manual you can hand to your future self.</em>
+        <p style="margin-top: 12px; font-size: 15px; color: var(--grey);">One-time install fees on the paid tiers. Optional monthly retainer for ongoing maintenance. Cancel anytime; the server stays yours.</p>
+      </div>
+      <div class="pricing-hero-cta">
+        <div class="pricing-hero-cta-label">Start here</div>
+        <div class="pricing-hero-cta-price">€0</div>
+        <div class="pricing-hero-cta-desc">The full operator's manual + vetting protocol + cognitive file templates. Yours to keep.</div>
+        <a href="manual.pdf">Download the manual</a>
+      </div>
     </div>
 
     <div class="pricing">
-      <div class="price-card free">
-        <div class="featured-tag">Start here</div>
-        <div class="price-name">Free</div>
-        <div class="price-tag">€0<small>download</small></div>
-        <p class="price-desc">The full operator's manual and vetting protocol, as a downloadable PDF. Everything you need to do it yourself, if that's your thing.</p>
-        <ul class="price-features">
-          <li>20-page operator's manual</li>
-          <li>7-step skill vetting protocol</li>
-          <li>Four cognitive file templates</li>
-          <li>Self-service. No support.</li>
-        </ul>
-        <p style="margin-top: 20px; font-size: 13px;"><a href="manual.pdf" style="color: var(--navy); font-weight: 600;">Download the manual →</a></p>
-      </div>
-
       <div class="price-card">
         <div class="price-name">Starter</div>
         <div class="price-tag">€199<small>one-time</small></div>
@@ -1066,7 +1101,7 @@
         <div class="featured-tag">Most chosen</div>
         <div class="price-name">Standard</div>
         <div class="price-tag">€399<small>one-time</small></div>
-        <p class="price-desc">Everything in Starter, with cognitive files customized to your projects, voice, and signature.</p>
+        <p class="price-desc">Everything in Starter, plus cognitive files customized to your projects, voice, and signature.</p>
         <ul class="price-features">
           <li>Everything in Starter</li>
           <li>Custom cognitive files for you</li>
