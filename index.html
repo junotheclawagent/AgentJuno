@@ -272,7 +272,7 @@
 
     @media (max-width: 600px) {
       .marquee-track {
-        animation-duration: 15s;
+        animation-duration: 8s;
         font-size: 14px;
       }
     }
@@ -535,6 +535,122 @@
     }
 
     .terminal-body > div { margin-bottom: 14px; }
+
+    /* ============ WHAT IT CAN DO ============ */
+    .can-do-section {
+      background: var(--navy-deep);
+      color: var(--cream);
+      padding: 100px 32px;
+      margin: 0;
+      max-width: none;
+    }
+
+    .can-do-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .can-do-section .section-eyebrow { color: #ff9580; }
+
+    .can-do-section .section-title {
+      color: var(--cream);
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .can-do-section .section-intro {
+      color: rgba(245, 233, 211, 0.7);
+      margin-bottom: 56px;
+    }
+
+    .can-do-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .can-do-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(245, 233, 211, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .can-do-card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid rgba(245, 233, 211, 0.08);
+    }
+
+    .can-do-use {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ff9580;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .can-do-title {
+      font-size: 18px;
+      color: var(--cream);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .can-do-terminal {
+      background: #050d24;
+      flex: 1;
+    }
+
+    .can-do-bar {
+      padding: 10px 16px;
+      border-bottom: 1px solid #1a2a52;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .can-do-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #2a3a62;
+    }
+
+    .can-do-label {
+      margin-left: 8px;
+      font-size: 11px;
+      color: rgba(245, 233, 211, 0.4);
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    }
+
+    .can-do-body {
+      padding: 20px;
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    .can-do-body > div { margin-bottom: 12px; }
+    .can-do-body > div:last-child { margin-bottom: 0; }
+
+    .cdo-user { color: #88c0d0; }
+    .cdo-user::before { content: "You ▸ "; color: rgba(245, 233, 211, 0.35); }
+
+    .cdo-juno { color: var(--cream); }
+    .cdo-juno::before { content: "Juno ◂ "; color: rgba(245, 233, 211, 0.35); }
+
+    .cdo-note {
+      color: rgba(245, 233, 211, 0.45);
+      font-style: italic;
+      font-size: 11.5px;
+    }
+
+    @media (max-width: 900px) {
+      .can-do-grid { grid-template-columns: 1fr; }
+      .can-do-section { padding: 60px 24px; }
+    }
 
     /* ============ WHAT YOU GET ============ */
     .grid-features {
@@ -886,7 +1002,7 @@
   <nav>
     <a href="#" class="nav-logo">
       <span class="nav-logo-mark">J</span>
-      Juno the Agent
+      OpenClaw Hardened
     </a>
     <div class="nav-links">
       <a href="#what">What you get</a>
@@ -901,7 +1017,7 @@
     <div class="hero-text">
       <div class="eyebrow">For people who own their tools</div>
       <h1>Your AI agent should refuse the wrong things — <em>not the right ones.</em></h1>
-      <p>Juno the Agent is a manual install of a private AI agent. EU-hosted, sandboxed, contractually limited, and yours forever. We built one, broke it, fixed it, and wrote down how.</p>
+      <p>OpenClaw Hardened is a manual install of a private AI agent. EU-hosted, sandboxed, contractually limited, and yours forever. We built one, broke it, fixed it, and wrote down how.</p>
       <div class="hero-ctas">
         <a href="mailto:junotheclawagent@gmail.com" class="btn btn-primary">Book a 20-minute call</a>
         <a href="#pricing" class="btn btn-secondary">Or read the manual free</a>
@@ -938,26 +1054,30 @@
   <div class="stat-band">
     <div class="stat-band-inner">
       <div class="stat">
-        <div class="stat-num">10</div>
+        <!-- EDIT: skills evaluated -->
+        <div class="stat-num">9</div>
         <div class="stat-label">skills evaluated</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <div class="stat-num">8</div>
+        <!-- EDIT: rejected -->
+        <div class="stat-num">7</div>
         <div class="stat-label">rejected</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
+        <!-- EDIT: installed -->
         <div class="stat-num">2</div>
-        <div class="stat-label">install survived</div>
+        <div class="stat-label">installed &amp; running</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
+        <!-- EDIT: hardening defaults -->
         <div class="stat-num">16</div>
         <div class="stat-label">hardening defaults</div>
       </div>
     </div>
-    <div class="stat-caption">Honest numbers from our own dogfood install. Updated as we learn.</div>
+    <div class="stat-caption">An 80% rejection rate isn't failure. It's the point. Honest numbers, updated as we learn.</div>
   </div>
 
   <!-- WHAT MOST SETUPS MISS -->
@@ -1064,6 +1184,80 @@
     </div>
   </section>
 
+  <!-- WHAT IT CAN ACTUALLY DO -->
+  <div class="can-do-section">
+    <div class="can-do-inner">
+      <div class="section-eyebrow">Real outputs. Real workflows.</div>
+      <h2 class="section-title">What it can <em>actually</em> do.</h2>
+      <p class="section-intro">Not a chatbot. An agent that acts — monitors, drafts, decides what to skip — while you get on with your day. Three things Juno does every week.</p>
+
+      <div class="can-do-grid">
+
+        <!-- CARD 1: Inbox triage -->
+        <div class="can-do-card">
+          <div class="can-do-card-header">
+            <div class="can-do-use">Inbox · every morning at 8am</div>
+            <div class="can-do-title">Tells you what actually needs a reply today</div>
+          </div>
+          <div class="can-do-terminal">
+            <div class="can-do-bar">
+              <div class="can-do-dot"></div><div class="can-do-dot"></div><div class="can-do-dot"></div>
+              <div class="can-do-label">Telegram → Juno · 08:01</div>
+            </div>
+            <div class="can-do-body">
+              <div class="cdo-juno">Morning. 34 emails overnight. Three need you today.</div>
+              <div class="cdo-juno">1. Marco — invoice query, needs a number confirmed. 2. Potential client — asked for a call this week, first contact. 3. Landlord — lease renewal, deadline Friday.</div>
+              <div class="cdo-juno">The other 31 are newsletters, receipts, and a thread you were CC'd on. Skipped.</div>
+              <div class="cdo-note">— triaged, not read to you. You decide what to open.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Drafts but asks -->
+        <div class="can-do-card">
+          <div class="can-do-card-header">
+            <div class="can-do-use">Communication · on demand</div>
+            <div class="can-do-title">Drafts replies. Asks before it sends.</div>
+          </div>
+          <div class="can-do-terminal">
+            <div class="can-do-bar">
+              <div class="can-do-dot"></div><div class="can-do-dot"></div><div class="can-do-dot"></div>
+              <div class="can-do-label">Telegram → Juno · 11:47</div>
+            </div>
+            <div class="can-do-body">
+              <div class="cdo-user">Draft a reply to the client asking for the call. Keep it warm, suggest Thursday or Friday.</div>
+              <div class="cdo-juno">Draft ready. Tone: warm, direct. Thursday 10am or Friday 3pm offered. Subject line included.</div>
+              <div class="cdo-juno">This is a first contact — sending to someone new requires your approval. Want to review it first?</div>
+              <div class="cdo-note">— it drafts. you approve. nothing goes out without you.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Catches the dangerous thing -->
+        <div class="can-do-card">
+          <div class="can-do-card-header">
+            <div class="can-do-use">Judgment · when it matters most</div>
+            <div class="can-do-title">Catches the thing you almost missed</div>
+          </div>
+          <div class="can-do-terminal">
+            <div class="can-do-bar">
+              <div class="can-do-dot"></div><div class="can-do-dot"></div><div class="can-do-dot"></div>
+              <div class="can-do-label">Telegram → Juno · 17:30</div>
+            </div>
+            <div class="can-do-body">
+              <div class="cdo-user">Unsubscribe me from all the marketing emails. Just handle it.</div>
+              <div class="cdo-juno">Pausing before I act. Found 52 threads tagged as marketing.</div>
+              <div class="cdo-juno">Six of them are from your bank, your accountant, and two active suppliers. They'd be caught in a bulk unsubscribe.</div>
+              <div class="cdo-juno">Want me to show you the list before I do anything?</div>
+              <div class="cdo-note">— it caught the edge case. you didn't have to.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="ornament">✦ ✦ ✦</div>
 
   <!-- PRICING -->
@@ -1167,7 +1361,7 @@
   </div>
 
   <footer>
-    <p>Juno the OpenClaw Agent is operated by Reehanul Karim, based in Milan, Italy.</p>
+    <p>OpenClaw Hardened is operated by Reehanul Karim, based in Milan, Italy.</p>
     <p>Built carefully. Sold honestly. Updated when something changes.</p>
   </footer>
 
