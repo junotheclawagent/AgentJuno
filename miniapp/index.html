@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juno</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    :root {
+      --navy: #0a1e4a;
+      --navy-deep: #061539;
+      --cream: #f5e9d3;
+      --cream-soft: #faf3e6;
+      --accent: #c8392e;
+      --coral: #ff9580;
+      --ink: #1a1a1a;
+      --grey: #5a5a5a;
+      --rule: #e5dfd1;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+      background: var(--cream-soft);
+      color: var(--ink);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--navy);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--cream);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-fallback {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .header-title {
+      color: var(--cream);
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(245, 233, 211, 0.1);
+      border: 1px solid rgba(245, 233, 211, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2ecc71;
+    }
+
+    .status-text {
+      color: var(--cream);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      font-family: Georgia, serif;
+    }
+
+    .stop-btn {
+      background: transparent;
+      border: 1px solid rgba(200, 57, 46, 0.5);
+      color: var(--coral);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      transition: background 0.15s;
+    }
+
+    .stop-btn:hover {
+      background: rgba(200, 57, 46, 0.15);
+    }
+
+    /* MESSAGES */
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .messages::-webkit-scrollbar { width: 4px; }
+    .messages::-webkit-scrollbar-track { background: transparent; }
+    .messages::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 2px; }
+
+    /* SPEND CARD */
+    .spend-card {
+      background: var(--navy-deep);
+      border-radius: 10px;
+      padding: 14px 16px;
+      border: 1px solid rgba(245, 233, 211, 0.1);
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+      font-size: 12px;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    .spend-card-title {
+      color: var(--coral);
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* MESSAGE BUBBLES */
+    .bubble-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bubble-wrap.user {
+      align-items: flex-end;
+    }
+
+    .bubble-wrap.juno {
+      align-items: flex-start;
+    }
+
+    .bubble-label {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 4px;
+      padding: 0 4px;
+    }
+
+    .bubble-wrap.juno .bubble-label {
+      color: var(--coral);
+    }
+
+    .bubble-wrap.user .bubble-label {
+      color: var(--grey);
+    }
+
+    .bubble {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .bubble-wrap.user .bubble {
+      background: var(--navy);
+      color: var(--cream);
+      border-bottom-right-radius: 4px;
+    }
+
+    .bubble-wrap.juno .bubble {
+      background: white;
+      color: var(--ink);
+      border-bottom-left-radius: 4px;
+      border: 1px solid var(--rule);
+    }
+
+    /* THINKING INDICATOR */
+    .thinking {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px 14px;
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      border-bottom-left-radius: 4px;
+      width: fit-content;
+    }
+
+    .thinking-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--navy);
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    .thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+    .thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* INPUT */
+    .input-area {
+      background: white;
+      border-top: 1px solid var(--rule);
+      padding: 10px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .input-field {
+      flex: 1;
+      border: 1px solid var(--rule);
+      border-radius: 20px;
+      padding: 9px 14px;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--cream-soft);
+      resize: none;
+      outline: none;
+      max-height: 100px;
+      line-height: 1.4;
+    }
+
+    .input-field:focus {
+      border-color: var(--navy);
+      background: white;
+    }
+
+    .send-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(10, 30, 74, 0.3);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .send-btn svg {
+      fill: var(--cream);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* STOP CONFIRMATION */
+    .stop-sheet {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 21, 57, 0.7);
+      z-index: 100;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .stop-sheet.open {
+      display: flex;
+    }
+
+    .stop-sheet-inner {
+      background: white;
+      border-radius: 16px 16px 0 0;
+      padding: 24px 20px 32px;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .stop-sheet-title {
+      font-size: 18px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .stop-sheet-desc {
+      font-size: 14px;
+      color: var(--grey);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .stop-sheet-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .stop-confirm {
+      flex: 1;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: Georgia, serif;
+    }
+
+    .stop-cancel {
+      flex: 1;
+      background: var(--cream-soft);
+      color: var(--navy);
+      border: 1px solid var(--rule);
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: Georgia, serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-mark">
+        <img src="../Juno%20Main%20Logo.png" alt="J"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="logo-fallback" style="display:none;">J</span>
+      </div>
+      <span class="header-title">Juno</span>
+    </div>
+    <div class="header-left" style="gap:10px;">
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        <span class="status-text">Operational</span>
+      </div>
+      <button class="stop-btn" onclick="openStop()">⚠ Stop</button>
+    </div>
+  </div>
+
+  <!-- MESSAGES -->
+  <div class="messages" id="messages">
+    <!-- Spend card injected here if available -->
+    <!-- Welcome message -->
+    <div class="bubble-wrap juno">
+      <div class="bubble-label">Juno</div>
+      <div class="bubble">Ready. What do you need?</div>
+    </div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="input-area">
+    <textarea class="input-field" id="input"
+      placeholder="Message Juno…"
+      rows="1"
+      onkeydown="handleKey(event)"
+      oninput="autoResize(this)"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 21L23 12 2 3v7l15 2-15 2z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- STOP CONFIRMATION SHEET -->
+  <div class="stop-sheet" id="stopSheet">
+    <div class="stop-sheet-inner">
+      <div class="stop-sheet-title">Stop everything?</div>
+      <div class="stop-sheet-desc">This halts all running tasks and scheduled jobs. Juno will confirm what was stopped and wait.</div>
+      <div class="stop-sheet-btns">
+        <button class="stop-confirm" onclick="confirmStop()">Stop everything</button>
+        <button class="stop-cancel" onclick="closeStop()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+
+    const BACKEND = "https://junotheclawagent.duckdns.org"\;
+    const messagesEl = document.getElementById("messages");
+    const inputEl = document.getElementById("input");
+    const sendBtn = document.getElementById("sendBtn");
+
+    // Auto-resize textarea
+    function autoResize(el) {
+      el.style.height = "auto";
+      el.style.height = Math.min(el.scrollHeight, 100) + "px";
+    }
+
+    // Enter to send, shift+enter for newline
+    function handleKey(e) {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function scrollToBottom() {
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function addBubble(text, role) {
+      const wrap = document.createElement("div");
+      wrap.className = `bubble-wrap ${role}`;
+
+      const label = document.createElement("div");
+      label.className = "bubble-label";
+      label.textContent = role === "user" ? "You" : "Juno";
+
+      const bubble = document.createElement("div");
+      bubble.className = "bubble";
+      bubble.textContent = text;
+
+      wrap.appendChild(label);
+      wrap.appendChild(bubble);
+      messagesEl.appendChild(wrap);
+      scrollToBottom();
+      return wrap;
+    }
+
+    function addThinking() {
+      const wrap = document.createElement("div");
+      wrap.className = "bubble-wrap juno";
+
+      const label = document.createElement("div");
+      label.className = "bubble-label";
+      label.textContent = "Juno";
+
+      const thinking = document.createElement("div");
+      thinking.className = "thinking";
+      thinking.innerHTML = `
+        <div class="thinking-dot"></div>
+        <div class="thinking-dot"></div>
+        <div class="thinking-dot"></div>
+      `;
+
+      wrap.appendChild(label);
+      wrap.appendChild(thinking);
+      messagesEl.appendChild(wrap);
+      scrollToBottom();
+      return wrap;
+    }
+
+    async function sendMessage() {
+      const text = inputEl.value.trim();
+      if (!text) return;
+
+      inputEl.value = "";
+      inputEl.style.height = "auto";
+      sendBtn.disabled = true;
+
+      addBubble(text, "user");
+      const thinkingEl = addThinking();
+
+      try {
+        const initData = tg.initData || "dev-mode";
+
+        const res = await fetch(`${BACKEND}/api/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text, initData }),
+        });
+
+        const data = await res.json();
+        thinkingEl.remove();
+
+        if (res.ok) {
+          addBubble(data.reply, "juno");
+        } else {
+          addBubble(`Error: ${data.detail || "Something went wrong"}`, "juno");
+        }
+      } catch (err) {
+        thinkingEl.remove();
+        addBubble("Could not reach Juno. Check your connection.", "juno");
+      }
+
+      sendBtn.disabled = false;
+      scrollToBottom();
+    }
+
+    // Stop everything
+    function openStop() {
+      document.getElementById("stopSheet").classList.add("open");
+    }
+
+    function closeStop() {
+      document.getElementById("stopSheet").classList.remove("open");
+    }
+
+    async function confirmStop() {
+      closeStop();
+      addBubble("stop everything", "user");
+      const thinkingEl = addThinking();
+
+      try {
+        const initData = tg.initData || "dev-mode";
+        const res = await fetch(`${BACKEND}/api/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: "stop everything", initData }),
+        });
+        const data = await res.json();
+        thinkingEl.remove();
+        addBubble(data.reply || "Stopped.", "juno");
+      } catch (err) {
+        thinkingEl.remove();
+        addBubble("Stop command sent.", "juno");
+      }
+    }
+  </script>
+
+</body>
+</html>
