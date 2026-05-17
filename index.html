@@ -891,7 +891,70 @@
       }
     }
 
-    /* ============ FAQ ============ */
+    /* ============ REFRAME GRID ============ */
+    .reframe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .reframe-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-top: 3px solid var(--navy);
+      padding: 28px;
+      border-radius: 0 0 8px 8px;
+    }
+
+    .reframe-card-icon { font-size: 22px; margin-bottom: 12px; }
+    .reframe-card h3 { font-size: 16px; color: var(--navy); margin-bottom: 8px; }
+    .reframe-card p  { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+    @media (max-width: 700px) {
+      .reframe-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============ SKILLS TEASER (on Pro card) ============ */
+    .skills-teaser {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(245, 233, 211, 0.2);
+    }
+
+    .skills-teaser-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--coral);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .skills-teaser-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .skills-pill {
+      background: rgba(245, 233, 211, 0.1);
+      border: 1px solid rgba(245, 233, 211, 0.2);
+      color: var(--cream);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .skills-teaser-link {
+      font-size: 12px;
+      color: var(--coral);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .skills-teaser-link:hover { text-decoration: underline; }
     .faq-item {
       border-bottom: 1px solid var(--rule);
       padding: 24px 0;
@@ -1005,6 +1068,7 @@
       OpenClaw Hardened
     </a>
     <div class="nav-links">
+      <a href="skills.html">Skills</a>
       <a href="#what">What you get</a>
       <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
@@ -1264,21 +1328,21 @@
   <section id="reframe" style="padding-bottom: 0;">
     <div class="section-eyebrow">Before you compare</div>
     <h2 class="section-title">This doesn't replace Claude.<br>It does the things Claude can't.</h2>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px;">
-      <div style="background: white; border: 1px solid var(--rule); border-top: 3px solid var(--navy); padding: 28px; border-radius: 0 0 8px 8px;">
-        <div style="font-size: 22px; margin-bottom: 12px;">🧠</div>
-        <h3 style="font-size: 16px; color: var(--navy); margin-bottom: 8px;">Remembers you. Forever.</h3>
-        <p style="font-size: 14px; color: var(--grey); line-height: 1.6;">Claude forgets everything when you close the tab. Juno knows your name, your projects, your email signature, and what you told it last Tuesday — every single session.</p>
+    <div class="reframe-grid">
+      <div class="reframe-card">
+        <div class="reframe-card-icon">🧠</div>
+        <h3>Remembers you. Forever.</h3>
+        <p>Claude forgets everything when you close the tab. Juno knows your name, your projects, your email signature, and what you told it last Tuesday — every single session.</p>
       </div>
-      <div style="background: white; border: 1px solid var(--rule); border-top: 3px solid var(--navy); padding: 28px; border-radius: 0 0 8px 8px;">
-        <div style="font-size: 22px; margin-bottom: 12px;">🌙</div>
-        <h3 style="font-size: 16px; color: var(--navy); margin-bottom: 8px;">Works while you sleep.</h3>
-        <p style="font-size: 14px; color: var(--grey); line-height: 1.6;">Claude only runs when you're at the keyboard. Juno monitors, researches, triages, and reports — on schedule, at 3am, without you there. You wake up to work already done.</p>
+      <div class="reframe-card">
+        <div class="reframe-card-icon">🌙</div>
+        <h3>Works while you sleep.</h3>
+        <p>Claude only runs when you're at the keyboard. Juno monitors, researches, triages, and reports — on schedule, at 3am, without you there. You wake up to work already done.</p>
       </div>
-      <div style="background: white; border: 1px solid var(--rule); border-top: 3px solid var(--navy); padding: 28px; border-radius: 0 0 8px 8px;">
-        <div style="font-size: 22px; margin-bottom: 12px;">🇪🇺</div>
-        <h3 style="font-size: 16px; color: var(--navy); margin-bottom: 8px;">Your server. Your law.</h3>
-        <p style="font-size: 14px; color: var(--grey); line-height: 1.6;">ChatGPT lives on American servers under American law. Juno lives on a server you own in Europe, under GDPR — the strictest data protection law in the world. Your data never leaves.</p>
+      <div class="reframe-card">
+        <div class="reframe-card-icon">🇪🇺</div>
+        <h3>Your server. Your law.</h3>
+        <p>ChatGPT lives on American servers under American law. Juno lives on a server you own in Europe, under GDPR — the strictest data protection law in the world. Your data never leaves.</p>
       </div>
     </div>
     <p style="text-align: center; margin-top: 24px; font-size: 15px; color: var(--grey); font-style: italic;">It costs €0.17 a day to run once it's set up. Keep your Claude subscription. Use both.</p>
@@ -1333,6 +1397,16 @@
           <li>24-hour response, ongoing</li>
           <li>Priority install slot</li>
         </ul>
+        <div class="skills-teaser">
+          <div class="skills-teaser-label">✦ Included — Juno Skills</div>
+          <div class="skills-teaser-pills">
+            <span class="skills-pill">Reddit Digger</span>
+            <span class="skills-pill">Morning Brief</span>
+            <span class="skills-pill">Scope Tracker</span>
+            <span class="skills-pill">+ more shipping</span>
+          </div>
+          <a href="skills.html" class="skills-teaser-link">See what each skill does →</a>
+        </div>
       </div>
 
       <!-- HOSTED WAITLIST CARD -->
