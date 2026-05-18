@@ -223,6 +223,7 @@
     }
 
     .input-field {
+      font-size: 16px;
       flex: 1;
       border: 1px solid var(--rule);
       border-radius: 6px;
@@ -473,9 +474,9 @@
       if (!text) return;
 
       inputEl.value = "";
-      inputEl.style.height = "auto";
+            sendBtn.disabled = true;inputEl.style.height = "auto";
       sendBtn.disabled = true;
-
+      inputEl.blur();
       addMessage(text, "user");
       const thinkingEl = addThinking();
 
