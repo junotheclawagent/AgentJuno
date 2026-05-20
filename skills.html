@@ -609,7 +609,7 @@
       <h1>The jobs Juno does<br>on your <em>behalf.</em></h1>
       <p>Skills are structured capability files that load alongside Juno's cognitive files. Drop one in, configure your topics, and Juno runs the job — on schedule, every day, without being asked.</p>
       <div class="hero-pill-row">
-        <div class="hero-pill"><span>3</span> skills available now</div>
+        <div class="hero-pill"><span>5</span> skills available now</div>
         <div class="hero-pill"><span>Free</span> with Pro tier</div>
         <div class="hero-pill"><span>More</span> in development</div>
       </div>
@@ -621,18 +621,18 @@
     <div class="how-strip-inner">
       <div class="how-step">
         <div class="how-num">01</div>
-        <div class="how-title">Get the skill file</div>
-        <div class="how-body">Upgrade to Pro and you're added to the private skills repo on GitHub. Download the .md file directly.</div>
+        <div class="how-title">Upgrade to Pro</div>
+        <div class="how-body">Skills come with the Pro tier. The moment you upgrade, your agent can reach the full skills catalogue — nothing to download, no repo to clone.</div>
       </div>
       <div class="how-step">
         <div class="how-num">02</div>
-        <div class="how-title">Drop it on your server</div>
-        <div class="how-body">Copy the file to <code style="font-family: monospace; font-size: 13px; background: var(--cream-soft); padding: 1px 5px; border-radius: 3px;">~/.openclaw/workspace/skills/</code> and run <code style="font-family: monospace; font-size: 13px; background: var(--cream-soft); padding: 1px 5px; border-radius: 3px;">openclaw gateway reload</code>.</div>
+        <div class="how-title">Just ask Juno</div>
+        <div class="how-body">Text your agent <code style="font-family: monospace; font-size: 13px; background: var(--cream-soft); padding: 1px 5px; border-radius: 3px;">install reddit digger</code>. It checks your tier, pulls the skill, and sets it up on your server. No terminal. No file copying. No GitHub.</div>
       </div>
       <div class="how-step">
         <div class="how-num">03</div>
-        <div class="how-title">Configure and run</div>
-        <div class="how-body">Add your topics to USER.md. The skill runs on schedule. Text Juno to trigger it on demand anytime.</div>
+        <div class="how-title">Configure in chat</div>
+        <div class="how-body">Juno asks what you want it to watch and writes the setup itself. The skill runs on schedule — and you can text Juno to trigger it on demand, any time.</div>
       </div>
     </div>
   </div>
@@ -770,6 +770,85 @@
       </div>
     </div>
 
+    <!-- SKILL 4: RESEARCH SCOUT -->
+    <div class="skill-card reverse">
+      <div class="skill-info">
+        <div class="skill-info-top">
+          <div class="skill-tier-badge"><span class="dot"></span>Free with Pro</div>
+          <div class="skill-name">Research Scout</div>
+          <div class="skill-hook">One good source, before your day begins.</div>
+          <p class="skill-desc">Every morning at 7am, Juno surfaces one source on the topic you're researching — a primary document, a novel secondary work, or a lead worth chasing. It reads what it can, flags what it can't, and never invents a citation. A research assistant that knows its own limits.</p>
+          <div class="skill-triggers">
+            <div class="skill-trigger">
+              <div class="trigger-icon">🌅</div>
+              <span><strong>Scheduled</strong> — every morning at 07:00 your timezone</span>
+            </div>
+            <div class="skill-trigger">
+              <div class="trigger-icon">💬</div>
+              <span><strong>On demand</strong> — send Juno <em>"scout"</em> or <em>"find me something"</em></span>
+            </div>
+            <div class="skill-trigger">
+              <div class="trigger-icon">📚</div>
+              <span><strong>Honest</strong> — flags what it couldn't verify, never fakes a source</span>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#pricing" class="skill-cta">Get this skill → Pro tier</a>
+      </div>
+      <div class="skill-demo">
+        <div class="demo-bar">
+          <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+          <div class="demo-label">Telegram → Juno · 07:00</div>
+        </div>
+        <div class="demo-body">
+          <div class="dm-juno">Found one for you this morning.</div>
+          <div class="dm-juno">📄 A 1923 letter in the New Yorker archive from the figure you've been quoting — it contradicts the standard reading by two of your sources.</div>
+          <div class="dm-juno">I could access the full text. Quoted the relevant paragraph below, with the archive link.</div>
+          <div class="dm-juno">One I couldn't verify: a German memoir reference that may have the footnote you need — it's behind a library paywall. Flagging it rather than guessing.</div>
+          <div class="dm-note">— one source, read and weighed. Not a pile of links.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILL 5: SUBSCRIPTION RADAR -->
+    <div class="skill-card">
+      <div class="skill-info">
+        <div class="skill-info-top">
+          <div class="skill-tier-badge"><span class="dot"></span>Free with Pro</div>
+          <div class="skill-name">Subscription Radar</div>
+          <div class="skill-hook">The charges you forgot you were paying.</div>
+          <p class="skill-desc">Juno keeps a running ledger of every subscription in your inbox — built from your email, kept current as new ones appear and old ones go quiet. Every Sunday evening, it shows you what's charging in the next 7 days and what's worth reconsidering. The week it catches one forgotten €19 charge, it's paid for itself.</p>
+          <div class="skill-triggers">
+            <div class="skill-trigger">
+              <div class="trigger-icon">📅</div>
+              <span><strong>Scheduled</strong> — every Sunday at 19:00 your timezone</span>
+            </div>
+            <div class="skill-trigger">
+              <div class="trigger-icon">💬</div>
+              <span><strong>On demand</strong> — send Juno <em>"what am I paying for"</em></span>
+            </div>
+            <div class="skill-trigger">
+              <div class="trigger-icon">📨</div>
+              <span><strong>Requires Gmail</strong> — scans your inbox to build the ledger</span>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#pricing" class="skill-cta">Get this skill → Pro tier</a>
+      </div>
+      <div class="skill-demo">
+        <div class="demo-bar">
+          <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+          <div class="demo-label">Telegram → Juno · Sun 19:00</div>
+        </div>
+        <div class="demo-body">
+          <div class="dm-juno">Subscription radar · week ahead</div>
+          <div class="dm-juno">Charging in the next 7 days:<br>• Adobe CC — €60.49 · Tue<br>• iCloud 2TB — €9.99 · Thu<br>• Notion — €9.50 · Fri</div>
+          <div class="dm-juno">Worth reconsidering:<br>• Figma — €15/mo — no activity detected in 38 days<br>• A newsletter you're paying for but haven't opened since March</div>
+          <div class="dm-note">— total tracked: €212/mo across 14 subscriptions.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- COMING SOON -->
@@ -777,9 +856,7 @@
     <h2>More skills in development.</h2>
     <p>Pro operators get early access as each one ships. Skills are vetted before release — the same 7-step protocol we use for our own installs.</p>
     <div class="coming-grid">
-      <div class="coming-pill">Research Scout</div>
       <div class="coming-pill">Fare Watcher</div>
-      <div class="coming-pill">Subscription Radar</div>
       <div class="coming-pill">Events Scout</div>
       <div class="coming-pill">Focus Sprint</div>
       <div class="coming-pill">Daily Thought</div>
