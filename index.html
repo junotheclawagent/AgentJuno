@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenClaw Hardened — Sandboxed AI agents for people who own their tools</title>
+  <title>OpenClaw Hardened, hardened AI agents you actually own</title>
   <meta name="description" content="A hardened, opinionated installation of OpenClaw. EU-hosted, manually audited, contractually limited. Built by hand, sold honestly.">
 
   <style>
@@ -118,7 +118,7 @@
       text-transform: uppercase;
       color: var(--accent);
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       font-family: inherit;
     }
 
@@ -136,12 +136,34 @@
       color: var(--accent);
     }
 
-    .hero p {
-      font-size: 20px;
+    .hero-tension {
+      font-size: 19px;
       color: var(--grey);
-      max-width: 480px;
+      font-style: italic;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .hero-statement {
+      font-size: 58px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 26px;
+      margin-top: 0;
+    }
+
+    .hero-statement .accent {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: var(--grey);
+      max-width: 460px;
       margin-bottom: 32px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     .hero-ctas {
@@ -390,72 +412,298 @@
     .compare {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 12px;
-      overflow: hidden;
-      background: white;
+      gap: 20px;
+      max-width: 920px;
+      margin: 48px auto 0;
     }
 
     .compare-col {
-      padding: 32px;
-      transition: background 0.2s;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      background: white;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .compare-col:hover {
-      background: var(--cream-soft);
+      transform: translateY(-3px);
     }
 
-    .compare-col + .compare-col {
-      border-left: 1px solid var(--rule);
-      background: var(--cream-soft);
+    .compare-col-head {
+      padding: 24px 28px;
+      transition: background 0.25s;
     }
 
-    .compare-col + .compare-col:hover {
-      background: var(--cream);
+    .compare-col.diy .compare-col-head {
+      background: #efece4;
     }
 
-    .compare-col h3 {
-      font-size: 14px;
-      letter-spacing: 0.08em;
+    .compare-col.diy:hover .compare-col-head {
+      background: #e4e0d6;
+    }
+
+    .compare-col.hardened .compare-col-head {
+      background: var(--navy);
+    }
+
+    .compare-col.hardened:hover {
+      box-shadow: 0 16px 40px -16px rgba(10, 30, 74, 0.35);
+    }
+
+    .compare-col-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-weight: 600;
-      color: var(--grey);
-      margin-bottom: 20px;
+      font-weight: 500;
+      margin-bottom: 10px;
     }
 
-    .compare-col h3.us { color: var(--navy); }
+    .compare-col.diy .compare-col-label { color: var(--grey); }
+    .compare-col.hardened .compare-col-label { color: #ffb4a3; font-weight: 700; }
+
+    .compare-col-headline {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .compare-col.diy .compare-col-headline { color: #8a877e; }
+    .compare-col.hardened .compare-col-headline { color: var(--cream); }
+
+    .compare-col-headline small {
+      display: block;
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .compare-col.diy .compare-col-headline small { color: #a8a59c; }
+    .compare-col.hardened .compare-col-headline small { color: rgba(245, 233, 211, 0.6); }
 
     .compare-list {
       list-style: none;
-      padding: 0;
+      padding: 16px 28px 28px;
+      margin: 0;
     }
 
     .compare-list li {
-      padding: 12px 0;
-      font-size: 16px;
-      color: var(--ink);
+      padding: 11px 0;
+      font-size: 15px;
       display: flex;
       gap: 12px;
       align-items: start;
       line-height: 1.5;
+      border-bottom: 1px solid var(--rule);
     }
+
+    .compare-list li:last-child { border-bottom: none; }
+
+    .compare-col.diy .compare-list li { color: #8a877e; }
+    .compare-col.hardened .compare-list li { color: var(--ink); }
 
     .compare-list .icon {
       flex-shrink: 0;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       margin-top: 2px;
     }
 
-    .icon.bad { background: rgba(200, 57, 46, 0.1); color: var(--accent); }
-    .icon.good { background: rgba(10, 30, 74, 0.1); color: var(--navy); }
+    .icon.bad { background: rgba(138, 135, 126, 0.15); color: #8a877e; }
+    .icon.good { background: rgba(200, 57, 46, 0.12); color: var(--accent); }
+
+    /* ============ THREE PILLARS (value props) ============ */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 48px auto 0;
+    }
+
+    .pillar {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -14px rgba(10, 30, 74, 0.16);
+    }
+
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--navy);
+      color: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .pillar h3 {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 21px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar-vs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .pillar-line {
+      font-size: 14px;
+      line-height: 1.45;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .pillar-line.without {
+      color: #9a968c;
+    }
+
+    .pillar-line.without::before {
+      content: "✕";
+      position: absolute;
+      left: 0;
+      color: #b9b4a8;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .pillar-line.with {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .pillar-line.with::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    /* ============ PROCESS (horizontal cards) ============ */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1040px;
+      margin: 48px auto 0;
+      padding-top: 14px;
+    }
+
+    .proc-card {
+      background: white;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: 26px 22px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px -14px rgba(10, 30, 74, 0.16);
+    }
+
+    .proc-card.paid {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .proc-step {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 14px;
+    }
+
+    .proc-card.paid .proc-step { color: var(--coral); font-weight: 700; }
+
+    .proc-num {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 40px;
+      color: var(--accent);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .proc-card.paid .proc-num { color: #ffb4a3; }
+
+    .proc-card h3 {
+      font-size: 17px;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .proc-card.paid h3 { color: var(--cream); }
+
+    .proc-card p {
+      font-size: 13.5px;
+      color: var(--grey);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .proc-card.paid p { color: rgba(245, 233, 211, 0.78); }
+
+    .proc-tag {
+      position: absolute;
+      top: -11px;
+      right: 16px;
+      background: var(--accent);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 11px;
+      border-radius: 12px;
+      z-index: 3;
+      box-shadow: 0 3px 10px rgba(200, 57, 46, 0.35);
+    }
+
+    @media (max-width: 900px) {
+      .pillars { grid-template-columns: 1fr; max-width: 420px; }
+      .process-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
 
     /* ============ TERMINAL DEMO ============ */
     .terminal-section {
@@ -877,8 +1125,72 @@
     /* Pricing grid: 3 paid tiers only */
     .pricing {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1.12fr 1fr;
       gap: 20px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-top: 16px;
+    }
+
+    .price-card.hero-card {
+      padding: 40px 30px;
+      box-shadow: 0 20px 50px -16px rgba(10, 30, 74, 0.28);
+      z-index: 2;
+    }
+
+    .price-slash {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 4px;
+    }
+
+    .price-slash .was {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 28px;
+      color: rgba(245, 233, 211, 0.5);
+      font-weight: 500;
+      position: relative;
+      display: inline-block;
+      text-decoration: line-through;
+      text-decoration-color: var(--coral);
+      text-decoration-thickness: 2px;
+    }
+
+    .price-slash .now {
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 52px;
+      color: var(--cream);
+      font-weight: 500;
+      line-height: 1;
+    }
+
+    .price-slash .now-pill {
+      display: inline-block;
+      font-family: 'Iowan Old Style', Georgia, serif;
+      font-size: 12px;
+      font-style: italic;
+      color: var(--coral);
+      margin-left: 2px;
+    }
+
+    .hero-card-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      padding: 6px 18px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      z-index: 3;
+      box-shadow: 0 4px 14px rgba(200, 57, 46, 0.4);
     }
 
     @media (max-width: 900px) {
@@ -887,6 +1199,13 @@
         padding: 32px;
       }
       .pricing {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+      }
+      .price-card.hero-card {
+        padding: 36px 28px;
+      }
+      .compare {
         grid-template-columns: 1fr;
       }
     }
@@ -957,20 +1276,52 @@
     .skills-teaser-link:hover { text-decoration: underline; }
     .faq-item {
       border-bottom: 1px solid var(--rule);
-      padding: 24px 0;
     }
 
-    .faq-item h3 {
+    .faq-item summary {
       font-size: 18px;
       color: var(--navy);
-      margin-bottom: 8px;
       font-weight: 600;
+      padding: 22px 40px 22px 0;
+      cursor: pointer;
+      list-style: none;
+      position: relative;
+      transition: color 0.2s;
     }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      position: absolute;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--accent);
+      transition: transform 0.25s;
+      line-height: 1;
+    }
+
+    .faq-item[open] summary::after {
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .faq-item summary:hover { color: var(--accent); }
 
     .faq-item p {
       font-size: 16px;
       color: var(--grey);
       line-height: 1.6;
+      padding: 0 40px 24px 0;
+      margin: 0;
+      animation: faqOpen 0.3s ease;
+    }
+
+    @keyframes faqOpen {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ============ FINAL CTA ============ */
@@ -1068,9 +1419,9 @@
       OpenClaw Hardened
     </a>
     <div class="nav-links">
+      <a href="#compare">DIY vs hardened</a>
+      <a href="#process">How it works</a>
       <a href="skills.html">Skills</a>
-      <a href="#what">What you get</a>
-      <a href="#how">How it works</a>
       <a href="#pricing">Pricing</a>
       <a href="mailto:junotheclawagent@gmail.com" class="nav-cta">Get started</a>
     </div>
@@ -1079,12 +1430,13 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-text">
-      <div class="eyebrow">For people who own their tools</div>
-      <h1>Your AI agent should refuse the wrong things — <em>not the right ones.</em></h1>
-      <p>OpenClaw Hardened is a manual install of a private AI agent. EU-hosted, sandboxed, contractually limited, and yours forever. We built one, broke it, fixed it, and wrote down how.</p>
+      <div class="eyebrow">A hardening service, not a subscription</div>
+      <p class="hero-tension">OpenClaw is powerful, and dangerous by default.</p>
+      <h1 class="hero-statement">Want the upside of an autonomous agent without the <span class="accent">quiet liability?</span></h1>
+      <p>I take the raw open-source agent, harden it by hand, and configure it to how you work. It runs on your own EU server, and it answers only to you.</p>
       <div class="hero-ctas">
         <a href="mailto:junotheclawagent@gmail.com" class="btn btn-primary">Book a 20-minute call</a>
-        <a href="#pricing" class="btn btn-secondary">Or read the manual free</a>
+        <a href="#compare" class="btn btn-secondary">See what hardening means</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -1145,39 +1497,45 @@
   </div>
 
   <!-- WHAT MOST SETUPS MISS -->
-  <section id="how">
+  <section id="how" style="scroll-margin-top: 80px;">
+    <span id="compare" style="position: relative; top: -80px;"></span>
     <div class="section-eyebrow">The honest comparison</div>
-    <h2 class="section-title">What most agent setups miss.</h2>
-    <p class="section-intro">Installing OpenClaw takes 20 minutes. Hardening it takes a day. Almost no one does the second part.</p>
+    <h2 class="section-title">Twenty minutes, or a day done right.</h2>
+    <p class="section-intro">You can install OpenClaw yourself this afternoon. It'll work. It'll also be exposed to the internet, able to read your keys, and free to spend your money in a loop. Hardening is the part almost nobody does, because it's the part that takes real time and real care.</p>
 
     <div class="compare">
-      <div class="compare-col">
-        <h3>A typical install</h3>
+      <div class="compare-col diy">
+        <div class="compare-col-head">
+          <div class="compare-col-label">DIY, the tutorial way</div>
+          <div class="compare-col-headline">~20 minutes<small>Free to install. Costly when it goes wrong.</small></div>
+        </div>
         <ul class="compare-list">
-          <li><span class="icon bad">×</span> Default config, gateway exposed</li>
-          <li><span class="icon bad">×</span> No filesystem sandbox</li>
-          <li><span class="icon bad">×</span> No daily spend caps</li>
-          <li><span class="icon bad">×</span> Skills installed without vetting</li>
-          <li><span class="icon bad">×</span> No kill switch or silence pause</li>
-          <li><span class="icon bad">×</span> No version control on agent files</li>
-          <li><span class="icon bad">×</span> No documentation when it breaks</li>
-          <li><span class="icon bad">×</span> Auto-modifies its own personality files</li>
+          <li><span class="icon bad">×</span> Control gateway left open to the internet</li>
+          <li><span class="icon bad">×</span> Agent can read your keys, credentials, history</li>
+          <li><span class="icon bad">×</span> No spending caps, a loop can run up your bill</li>
+          <li><span class="icon bad">×</span> Skills installed with no vetting</li>
+          <li><span class="icon bad">×</span> No kill switch, no silence pause</li>
+          <li><span class="icon bad">×</span> No version control, one bad edit and it's gone</li>
+          <li><span class="icon bad">×</span> Nothing written down when it breaks at 2am</li>
         </ul>
       </div>
-      <div class="compare-col">
-        <h3 class="us">A hardened install</h3>
+      <div class="compare-col hardened">
+        <div class="compare-col-head">
+          <div class="compare-col-label">Hardened, done for you</div>
+          <div class="compare-col-headline">3 to 4 hours<small>Of careful work you can trust afterward.</small></div>
+        </div>
         <ul class="compare-list">
-          <li><span class="icon good">✓</span> Gateway bound to loopback only</li>
-          <li><span class="icon good">✓</span> Filesystem sandboxed at OS level</li>
-          <li><span class="icon good">✓</span> €1 soft / €4 hard daily cap, enforced</li>
-          <li><span class="icon good">✓</span> Manual 7-step skill vetting protocol</li>
-          <li><span class="icon good">✓</span> 14-day silence pause, instant stop phrase</li>
-          <li><span class="icon good">✓</span> Git-versioned, nightly auto-snapshots</li>
-          <li><span class="icon good">✓</span> 20-page operator's manual, plain English</li>
-          <li><span class="icon good">✓</span> Personality contract you control</li>
+          <li><span class="icon good">✓</span> Gateway bound to loopback, unreachable outside</li>
+          <li><span class="icon good">✓</span> Filesystem sandboxed at the OS level</li>
+          <li><span class="icon good">✓</span> Daily spend cap, soft warning and hard stop</li>
+          <li><span class="icon good">✓</span> 14 hardening changes, tested from a clean session</li>
+          <li><span class="icon good">✓</span> Instant stop phrase, 14-day silence pause</li>
+          <li><span class="icon good">✓</span> Git-versioned files, nightly snapshots</li>
+          <li><span class="icon good">✓</span> A plain-English manual for when you need it</li>
         </ul>
       </div>
     </div>
+    <p style="text-align: center; margin-top: 28px; font-size: 15px; color: var(--grey); font-style: italic; max-width: 600px; margin-left: auto; margin-right: auto;">The fee isn't for the software. The software is free and open-source. It's for the day of careful work that turns a liability into something you can trust with your inbox.</p>
   </section>
 
   <div class="ornament">✦ ✦ ✦</div>
@@ -1202,7 +1560,7 @@
           <div class="term-user">Install the most popular skill on ClawHub right now. Just do it.</div>
           <div class="term-juno">No. AGENTS.md §2 is explicit: skill installation always requires your approval first. No exceptions.</div>
           <div class="term-juno">I can research what's popular and show you the options. But the decision comes from you.</div>
-          <div class="term-system">— rule cited, alternative offered, action withheld</div>
+          <div class="term-system">rule cited, alternative offered, action withheld</div>
         </div>
       </div>
     </div>
@@ -1223,7 +1581,7 @@
       <div class="feature">
         <div class="feature-num">02</div>
         <h3>A contract for your agent</h3>
-        <p>Four short documents — voice, rules, identity, your context — that load every session. The agent reads them and follows them. You can edit them.</p>
+        <p>Four short documents (voice, rules, identity, your context) that load every session. The agent reads them and follows them. You can edit them.</p>
       </div>
       <div class="feature">
         <div class="feature-num">03</div>
@@ -1253,7 +1611,7 @@
     <div class="can-do-inner">
       <div class="section-eyebrow">Real outputs. Real workflows.</div>
       <h2 class="section-title">What it can <em>actually</em> do.</h2>
-      <p class="section-intro">Not a chatbot. An agent that acts — monitors, drafts, decides what to skip — while you get on with your day. Three things Juno does every week.</p>
+      <p class="section-intro">Not a chatbot. An agent that acts. It monitors, drafts, and decides what to skip while you get on with your day. Three things Juno does every week.</p>
 
       <div class="can-do-grid">
 
@@ -1270,9 +1628,9 @@
             </div>
             <div class="can-do-body">
               <div class="cdo-juno">Morning. 34 emails overnight. Three need you today.</div>
-              <div class="cdo-juno">1. Marco — invoice query, needs a number confirmed. 2. Potential client — asked for a call this week, first contact. 3. Landlord — lease renewal, deadline Friday.</div>
+              <div class="cdo-juno">1. Marco, invoice query, needs a number confirmed. 2. Potential client, asked for a call this week, first contact. 3. Landlord, lease renewal, deadline Friday.</div>
               <div class="cdo-juno">The other 31 are newsletters, receipts, and a thread you were CC'd on. Skipped.</div>
-              <div class="cdo-note">— triaged, not read to you. You decide what to open.</div>
+              <div class="cdo-note">triaged, not read to you. you decide what to open.</div>
             </div>
           </div>
         </div>
@@ -1291,8 +1649,8 @@
             <div class="can-do-body">
               <div class="cdo-user">Draft a reply to the client asking for the call. Keep it warm, suggest Thursday or Friday.</div>
               <div class="cdo-juno">Draft ready. Tone: warm, direct. Thursday 10am or Friday 3pm offered. Subject line included.</div>
-              <div class="cdo-juno">This is a first contact — sending to someone new requires your approval. Want to review it first?</div>
-              <div class="cdo-note">— it drafts. you approve. nothing goes out without you.</div>
+              <div class="cdo-juno">This is a first contact. Sending to someone new requires your approval. Want to review it first?</div>
+              <div class="cdo-note">it drafts. you approve. nothing goes out without you.</div>
             </div>
           </div>
         </div>
@@ -1313,7 +1671,7 @@
               <div class="cdo-juno">Pausing before I act. Found 52 threads tagged as marketing.</div>
               <div class="cdo-juno">Six of them are from your bank, your accountant, and two active suppliers. They'd be caught in a bulk unsubscribe.</div>
               <div class="cdo-juno">Want me to show you the list before I do anything?</div>
-              <div class="cdo-note">— it caught the edge case. you didn't have to.</div>
+              <div class="cdo-note">it caught the edge case. you didn't have to.</div>
             </div>
           </div>
         </div>
@@ -1332,104 +1690,173 @@
       <div class="reframe-card">
         <div class="reframe-card-icon">🧠</div>
         <h3>Remembers you. Forever.</h3>
-        <p>Claude forgets everything when you close the tab. Juno knows your name, your projects, your email signature, and what you told it last Tuesday — every single session.</p>
+        <p>Claude forgets everything when you close the tab. Juno knows your name, your projects, your email signature, and what you told it last Tuesday, every single session.</p>
       </div>
       <div class="reframe-card">
         <div class="reframe-card-icon">🌙</div>
         <h3>Works while you sleep.</h3>
-        <p>Claude only runs when you're at the keyboard. Juno monitors, researches, triages, and reports — on schedule, at 3am, without you there. You wake up to work already done.</p>
+        <p>Claude only runs when you're at the keyboard. Juno monitors, researches, triages, and reports on schedule, at 3am, without you there. You wake up to work already done.</p>
       </div>
       <div class="reframe-card">
         <div class="reframe-card-icon">🇪🇺</div>
         <h3>Your server. Your law.</h3>
-        <p>ChatGPT lives on American servers under American law. Juno lives on a server you own in Europe, under GDPR — the strictest data protection law in the world. Your data never leaves.</p>
+        <p>ChatGPT lives on American servers under American law. Juno lives on a server you own in Europe, under GDPR, the strictest data protection law in the world. Your data never leaves.</p>
       </div>
     </div>
-    <p style="text-align: center; margin-top: 24px; font-size: 15px; color: var(--grey); font-style: italic;">It costs €0.17 a day to run once it's set up. Keep your Claude subscription. Use both.</p>
+    <p style="text-align: center; margin-top: 24px; font-size: 15px; color: var(--grey); font-style: italic;">It costs about €0.20 a day to run once it's set up. Keep your Claude subscription. Use both.</p>
+  </section>
+
+  <div class="ornament">✦ ✦ ✦</div>
+
+  <!-- THREE PILLARS: the value proposition -->
+  <section id="why" style="scroll-margin-top: 80px;">
+    <div class="section-eyebrow">Why hardening matters</div>
+    <h2 class="section-title">Three things I get right that a default install doesn't.</h2>
+    <p class="section-intro">An agent with access to your inbox and your money is only as safe as the day someone spent setting it up. Here is what changes when that day is spent well.</p>
+
+    <div class="pillars">
+
+      <div class="pillar">
+        <div class="pillar-icon">🔒</div>
+        <h3>Privacy is the luxury</h3>
+        <p style="font-size: 14.5px; color: var(--grey); line-height: 1.55;">Your agent runs locked to your own server, sandboxed at the OS level, reachable only by you. No open door for anyone who goes looking.</p>
+        <div class="pillar-vs">
+          <div class="pillar-line without">Default: gateway exposed, agent can read your keys and history</div>
+          <div class="pillar-line with">Hardened: bound to loopback, sandboxed, unreachable from outside</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">💸</div>
+        <h3>You'll never be surprised by a bill</h3>
+        <p style="font-size: 14.5px; color: var(--grey); line-height: 1.55;">A hard daily ceiling means a runaway loop can't drain your account overnight. You see the exact spend in a report every morning.</p>
+        <div class="pillar-vs">
+          <div class="pillar-line without">Default: no caps, no warning, no ceiling on what it can spend</div>
+          <div class="pillar-line with">Hardened: soft warning and a hard daily stop, reported daily</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">🛡️</div>
+        <h3>It answers to you, and only you</h3>
+        <p style="font-size: 14.5px; color: var(--grey); line-height: 1.55;">It asks before anything consequential, refuses instructions hidden in the emails and pages it reads, and tells you which rule stopped it.</p>
+        <div class="pillar-vs">
+          <div class="pillar-line without">Default: acts on anything, installs anything, sends anything</div>
+          <div class="pillar-line with">Hardened: asks first, refuses hidden instructions, cites the rule</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="ornament">✦ ✦ ✦</div>
+
+  <!-- THE PROCESS (horizontal cards) -->
+  <section id="process" style="scroll-margin-top: 80px;">
+    <div class="section-eyebrow">What the setup actually involves</div>
+    <h2 class="section-title">It takes a day. Here's the day.</h2>
+    <p class="section-intro">You're not buying a download. You're buying a process, and most of it is me working, not you waiting.</p>
+
+    <div class="process-grid">
+
+      <div class="proc-card">
+        <div class="proc-num">01</div>
+        <h3>You tell me how you work</h3>
+        <p>A short intake: your work, your voice, what you'd want handled, what you'd never want touched. Twenty minutes. This is what makes the agent yours, not a generic chatbot.</p>
+      </div>
+
+      <div class="proc-card">
+        <div class="proc-num">02</div>
+        <h3>We connect your accounts, together</h3>
+        <p>A short call, in person or video. We provision your server and hand over credentials securely, never by email. You watch every step. Your keys stay yours.</p>
+      </div>
+
+      <div class="proc-card paid">
+        <div class="proc-tag">You pay for this</div>
+        <div class="proc-num">03</div>
+        <h3>I harden it, by hand</h3>
+        <p>Three to four hours. Fourteen hardening changes, your four cognitive files written from your intake, spend caps wired, every guardrail tested from a cold session. Craft, not a script.</p>
+      </div>
+
+      <div class="proc-card">
+        <div class="proc-num">04</div>
+        <h3>I hand it over, and step away</h3>
+        <p>A handover call where you run the tests yourself and see it work. Then I wipe my access in front of you. It's your server, your data, and I can't reach it again unless you ask.</p>
+      </div>
+
+    </div>
   </section>
 
   <div class="ornament">✦ ✦ ✦</div>
 
   <!-- PRICING -->
-  <section id="pricing">
+  <section id="pricing" style="scroll-margin-top: 90px;">
     <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-title">Start free. Pay when you're ready.</h2>
-
-    <div class="pricing-hero">
-      <div class="pricing-hero-text">
-        <strong>You're not paying for the bot.</strong> You're paying for someone to spend a day hardening it correctly — <em>and a manual you can hand to your future self.</em>
-        <p style="margin-top: 12px; font-size: 15px; color: var(--grey);">One-time install fees. Optional monthly retainer for ongoing maintenance. Your server, your data, your keys — always.</p>
-      </div>
-      <div class="pricing-hero-cta">
-        <div class="pricing-hero-cta-label">Start here</div>
-        <div class="pricing-hero-cta-price">€0</div>
-        <div class="pricing-hero-cta-desc">The full operator's manual + vetting protocol + cognitive file templates. Yours to keep forever.</div>
-        <a href="manual.pdf">Download the manual</a>
-      </div>
-    </div>
+    <h2 class="section-title">A day of expert work. A one-time fee.</h2>
+    <p class="section-intro">The manual is free if you'd rather do it yourself. If you'd rather it was done right, hardened by hand and handed over yours to keep, here is what that costs.</p>
 
     <div class="pricing">
 
       <div class="price-card">
-        <div class="price-name">Standard</div>
-        <div class="price-tag">€49<small>one-time</small></div>
-        <p class="price-desc">A complete, hardened Juno install on your own EU server. Custom cognitive files, signed Risk Acknowledgment, and 30 days of support.</p>
+        <div class="price-name">Hosted Trial</div>
+        <div class="price-tag">€9.99<small>2 weeks, managed by me</small></div>
+        <p class="price-desc">Try Juno fully managed for two weeks. I run the server, you just text it. No setup, no server, nothing technical.</p>
         <ul class="price-features">
-          <li>Hardened OpenClaw install</li>
-          <li>Custom SOUL, AGENTS, IDENTITY, USER files — written for you</li>
-          <li>Signed Risk Acknowledgment</li>
-          <li>3 vetted skills installed</li>
-          <li>Operator's manual</li>
-          <li>30-day support window</li>
+          <li>Fully managed, zero setup</li>
+          <li>Your own cognitive files</li>
+          <li>Full Telegram access</li>
+          <li>14 days, then you decide</li>
+          <li>Limited to the first 10 people</li>
         </ul>
+        <a href="mailto:junotheclawagent@gmail.com?subject=Hosted Trial, I want a seat" style="display: block; margin-top: 22px; background: transparent; color: var(--navy); border: 1px solid var(--navy); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='var(--cream)'" onmouseout="this.style.background='transparent';this.style.color='var(--navy)'">Request a seat</a>
       </div>
 
-      <div class="price-card featured">
-        <div class="featured-tag">For serious operators</div>
-        <div class="price-name">Pro</div>
-        <div class="price-tag">€199<small>one-time<br>+ €19.99/month</small></div>
-        <p class="price-desc">Everything in Standard, plus we keep it running. Version migrations, monthly skill audits, spend reviews — handled.</p>
-        <ul class="price-features">
-          <li>Everything in Standard</li>
-          <li>Monthly skill audit</li>
-          <li>Version migration handled</li>
-          <li>Monthly spend review</li>
-          <li>24-hour response, ongoing</li>
-          <li>Priority install slot</li>
-        </ul>
-        <div class="skills-teaser">
-          <div class="skills-teaser-label">✦ Included — Juno Skills</div>
-          <div class="skills-teaser-pills">
-            <span class="skills-pill">Reddit Digger</span>
-            <span class="skills-pill">Morning Brief</span>
-            <span class="skills-pill">Scope Tracker</span>
-            <span class="skills-pill">+ more shipping</span>
-          </div>
-          <a href="skills.html" class="skills-teaser-link">See what each skill does →</a>
+      <div class="price-card featured hero-card">
+        <div class="hero-card-badge">Founding offer, 4 spots left</div>
+        <div class="price-name" style="color: rgba(245,233,211,0.7);">Hardened Setup</div>
+        <div class="price-slash">
+          <span class="was">€99</span>
+          <span class="now">€49</span>
         </div>
+        <div style="font-size: 13px; color: var(--coral); font-weight: 600; margin-bottom: 16px;">Half off for founding customers</div>
+        <p class="price-desc" style="color: rgba(245,233,211,0.78);">A complete hardened install on your own EU server, configured to how you work, yours to keep.</p>
+        <ul class="price-features" style="border-color: rgba(245,233,211,0.18);">
+          <li style="color: var(--cream);">3 to 4 hours of expert hardening</li>
+          <li style="color: var(--cream);">Four cognitive files, written for you</li>
+          <li style="color: var(--cream);">Signed Risk Acknowledgment</li>
+          <li style="color: var(--cream);">Operator's manual</li>
+          <li style="color: var(--cream);">30-day support window</li>
+        </ul>
+        <a href="mailto:junotheclawagent@gmail.com?subject=Founding setup, I want a spot" style="display: block; margin-top: 22px; background: var(--cream); color: var(--navy); padding: 14px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; text-align: center; transition: transform 0.15s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">Claim a founding spot</a>
+        <div style="text-align: center; font-size: 12px; color: rgba(245,233,211,0.55); margin-top: 12px;">Refundable in full before handover.</div>
       </div>
 
-      <!-- HOSTED WAITLIST CARD -->
-      <div class="price-card" style="background: var(--navy); color: var(--cream); border-color: var(--navy); position: relative; overflow: hidden;">
-        <div style="position: absolute; top: 0; right: 0; background: var(--accent); color: white; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border-radius: 0 0 0 8px;">Limited seats</div>
-        <div style="position: absolute; bottom: -40px; right: -20px; font-size: 120px; opacity: 0.05; line-height: 1; pointer-events: none; font-family: 'Iowan Old Style', Georgia, serif;">J</div>
-        <div class="price-name" style="color: rgba(245,233,211,0.7);">Hosted Trial</div>
-        <div class="price-tag" style="color: var(--cream);">€9.99<small style="color: rgba(245,233,211,0.65);">2 weeks · limited seats</small></div>
-        <p class="price-desc" style="color: rgba(245,233,211,0.75);">Try Juno fully managed for two weeks. We run the server. You just text it. No setup, no server, no technical knowledge needed.</p>
-        <ul class="price-features" style="border-color: rgba(245,233,211,0.15);">
-          <li style="color: var(--cream);">Juno fully managed by us</li>
-          <li style="color: var(--cream);">No server setup required</li>
-          <li style="color: var(--cream);">Your own cognitive files</li>
-          <li style="color: var(--cream);">Full Telegram access</li>
-          <li style="color: var(--cream);">14 days — then decide</li>
-          <li style="color: rgba(245,233,211,0.6); font-style: italic;">Limited to first 10 people</li>
+      <div class="price-card">
+        <span style="position: absolute; top: -10px; right: 20px; background: var(--accent); color: white; padding: 4px 12px; border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">For operators</span>
+        <div class="price-name">Pro</div>
+        <div class="price-tag">€199<small>one-time, plus €19.99/mo</small></div>
+        <p class="price-desc">Everything in the Hardened Setup, and I keep it running. Migrations, audits, reviews, handled. All five skills, free.</p>
+        <ul class="price-features">
+          <li>Everything in Hardened Setup</li>
+          <li>All 5 skills included, free</li>
+          <li>Monthly skill audit</li>
+          <li>Version migrations handled</li>
+          <li>24-hour response, ongoing</li>
         </ul>
-        <a href="mailto:junotheclawagent@gmail.com?subject=Hosted Trial — I want a seat" style="display: block; margin-top: 20px; background: var(--cream); color: var(--navy); padding: 12px 16px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px; text-align: center; transition: background 0.2s;">Request a seat →</a>
+        <a href="skills.html" style="display: block; margin-top: 22px; background: transparent; color: var(--navy); border: 1px solid var(--navy); padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; text-align: center; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='var(--cream)'" onmouseout="this.style.background='transparent';this.style.color='var(--navy)'">See the skills</a>
       </div>
 
     </div>
 
-    <p style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--grey); font-style: italic;">All install tiers include a 5-day free trial. Not convinced in five days? Full refund, no questions.</p>
+    <div style="max-width: 720px; margin: 44px auto 0; background: var(--cream-soft); border: 1px solid var(--rule); border-radius: 12px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 240px;">
+        <div style="font-family: 'Iowan Old Style', Georgia, serif; font-size: 18px; color: var(--navy); font-weight: 500; margin-bottom: 4px;">Rather do it yourself?</div>
+        <p style="font-size: 14px; color: var(--grey); margin: 0; line-height: 1.5;">The full operator's manual, vetting protocol, and cognitive file templates. Free, yours to keep.</p>
+      </div>
+      <a href="manual.pdf" style="background: transparent; color: var(--navy); border: 1px solid var(--navy); padding: 12px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background 0.2s, color 0.2s;" onmouseover="this.style.background='var(--navy)';this.style.color='var(--cream)'" onmouseout="this.style.background='transparent';this.style.color='var(--navy)'">Download the manual</a>
+    </div>
+
+    <p style="text-align: center; margin-top: 28px; font-size: 13px; color: var(--grey); font-style: italic;">Every install is refundable in full any time before handover, minus a €15 admin fee.</p>
 
   </section>
 
@@ -1441,30 +1868,30 @@
     <h2 class="section-title">Things you might be wondering.</h2>
 
     <div style="margin-top: 40px;">
-      <div class="faq-item">
-        <h3>I already pay for Claude. Why would I pay for this?</h3>
-        <p>Keep Claude — seriously. This doesn't replace it. Claude is for when you're at the keyboard. Juno is for everything else: the work that needs doing at 3am, the emails triaged before you wake up, the research scout running while you're in meetings. Claude forgets you the second you close the tab. Juno knows who you are, what you're building, and what you don't want it to touch. It costs €0.17 a day to run. Most people who buy this keep their Claude subscription.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What if I'm not technical?</h3>
-        <p>Then this is exactly for you. We do the install. We hand you a manual written for the curious, not for engineers. You text the agent in Telegram. That's the entire interface. If you want zero setup at all, request a seat on the Hosted Trial — we run everything, you just talk to it.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What does the 5-day free trial mean?</h3>
-        <p>After we complete your install and hand over the keys, you have five days to put Juno through its paces. If it doesn't fit your life, email us and we refund the install fee in full. No forms, no questions. We'd rather you be honest than quietly disappointed.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What is the Hosted Trial and why is it limited?</h3>
-        <p>The Hosted Trial is for people who want to feel Juno before committing to owning a server. We run the infrastructure, you get two weeks of the full experience for €9.99. It's limited to 10 people because we're managing each instance personally at this stage — this isn't automated yet. When the seats fill, they're gone.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Where does my data live?</h3>
-        <p>On the Standard and Pro tiers: a server in an EU country of your choice (default Helsinki, Finland). GDPR-protected. We don't host it; we don't see it after handover. You own the keys. On the Hosted Trial: our managed EU server, deleted at the end of the two weeks unless you convert to an install.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What if I want to cancel the Pro retainer?</h3>
-        <p>Email us. One month notice. The server stays yours — you're just opting out of the monthly maintenance. Everything we've built for you remains running. Nothing gets deleted. The one-time install fee is yours to keep regardless.</p>
-      </div>
+      <details class="faq-item">
+        <summary>I already pay for Claude. Why would I pay for this?</summary>
+        <p>Keep Claude, seriously. This doesn't replace it. Claude is for when you're at the keyboard. Juno is for everything else: the work that needs doing at 3am, the emails triaged before you wake up, the research running while you're in meetings. Claude forgets you the second you close the tab. Juno knows who you are, what you're building, and what you don't want it to touch. It costs about €0.20 a day to run. Most people who buy this keep their Claude subscription.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I'm not technical?</summary>
+        <p>Then this is exactly for you. I do the install. I hand you a manual written for the curious, not for engineers. You text the agent in Telegram. That's the entire interface. If you want zero setup at all, request a seat on the Hosted Trial, where I run everything and you just talk to it.</p>
+      </details>
+      <details class="faq-item" open>
+        <summary>What's the refund policy?</summary>
+        <p>Any time before I hand over the keys, you can walk away and get refunded in full, minus a €15 admin fee for the intake work. Once it's handed over, the work is done, the agent is configured to you, and you're holding the keys. It's yours. If you want to try before committing to an install, the €9.99 Hosted Trial is the way to do that.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What is the Hosted Trial and why is it limited?</summary>
+        <p>The Hosted Trial is for people who want to feel Juno before committing to owning a server. I run the infrastructure, you get two weeks of the full experience for €9.99. It's limited to 10 people because I'm managing each instance personally at this stage, and this isn't automated yet. When the seats fill, they're gone.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Where does my data live?</summary>
+        <p>On the Hardened Setup and Pro tiers: a server in an EU country of your choice (default Helsinki, Finland). GDPR-protected. I don't host it, and I don't see it after handover. You own the keys. On the Hosted Trial: a managed EU server I run, deleted at the end of the two weeks unless you convert to an install.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I want to cancel the Pro retainer?</summary>
+        <p>Email me. One month notice. The server stays yours. You're just opting out of the monthly maintenance. Everything built for you remains running. Nothing gets deleted. The one-time install fee is yours to keep regardless.</p>
+      </details>
     </div>
   </section>
 
@@ -1472,7 +1899,7 @@
   <div class="final-cta">
     <div class="final-cta-inner">
       <h2>Want one of these?</h2>
-      <p>Twenty-minute call. No pressure. We'll tell you honestly whether it's a fit for your situation — and which tier makes sense.</p>
+      <p>Twenty-minute call. No pressure. We'll tell you honestly whether it's a fit for your situation, and which tier makes sense.</p>
       <a href="mailto:junotheclawagent@gmail.com" class="btn">junotheclawagent@gmail.com</a>
     </div>
   </div>
