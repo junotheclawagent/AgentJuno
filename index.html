@@ -523,6 +523,24 @@
     .icon.good { background: rgba(200, 57, 46, 0.12); color: var(--accent); }
 
     /* ============ THREE PILLARS (value props) ============ */
+    .why-band {
+      background: var(--navy-deep);
+      padding: 90px 32px;
+      margin: 0;
+      max-width: none;
+      scroll-margin-top: 80px;
+    }
+
+    .why-band .section-eyebrow { color: #ff9580; }
+
+    .why-band .section-title {
+      color: var(--cream);
+    }
+
+    .why-band .section-intro {
+      color: rgba(245, 233, 211, 0.7);
+    }
+
     .pillars {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1706,10 +1724,9 @@
     <p style="text-align: center; margin-top: 24px; font-size: 15px; color: var(--grey); font-style: italic;">It costs about €0.20 a day to run once it's set up. Keep your Claude subscription. Use both.</p>
   </section>
 
-  <div class="ornament">✦ ✦ ✦</div>
-
   <!-- THREE PILLARS: the value proposition -->
-  <section id="why" style="scroll-margin-top: 80px;">
+  <section id="why" class="why-band">
+    <div style="max-width: 1100px; margin: 0 auto;">
     <div class="section-eyebrow">Why hardening matters</div>
     <h2 class="section-title">Three things I get right that a default install doesn't.</h2>
     <p class="section-intro">An agent with access to your inbox and your money is only as safe as the day someone spent setting it up. Here is what changes when that day is spent well.</p>
@@ -1747,9 +1764,8 @@
       </div>
 
     </div>
+    </div>
   </section>
-
-  <div class="ornament">✦ ✦ ✦</div>
 
   <!-- THE PROCESS (horizontal cards) -->
   <section id="process" style="scroll-margin-top: 80px;">
