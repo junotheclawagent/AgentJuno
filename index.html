@@ -137,33 +137,81 @@
     }
 
     .hero-tension {
-      font-size: 19px;
-      color: var(--grey);
-      font-style: italic;
-      margin-bottom: 8px;
-      line-height: 1.3;
+      display: none;
     }
 
     .hero-statement {
-      font-size: 58px;
-      line-height: 1.02;
-      letter-spacing: -0.03em;
+      font-size: 54px;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
       color: var(--navy);
       font-weight: 500;
       margin-bottom: 26px;
       margin-top: 0;
+      min-height: 3em;
+      position: relative;
     }
 
     .hero-statement .accent {
       color: var(--accent);
     }
 
+    /* Rotating headline */
+    .headline-slot {
+      display: inline;
+    }
+
+    .headline-phrase {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .headline-phrase.active {
+      opacity: 1;
+      transform: translateY(0);
+      position: relative;
+      pointer-events: auto;
+    }
+
+    .headline-phrase.exiting {
+      opacity: 0;
+      transform: translateY(-12px);
+      position: absolute;
+    }
+
+    /* Progress dots */
+    .hero-dots {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rule);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .hero-dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
     .hero p {
-      font-size: 19px;
+      font-size: 18px;
       color: var(--grey);
       max-width: 460px;
       margin-bottom: 32px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .hero-ctas {
@@ -1437,7 +1485,7 @@
       OpenClaw Hardened
     </a>
     <div class="nav-links">
-      <a href="#compare">DIY vs hardened</a>
+      <a href="#what-we-do">What we do</a>
       <a href="#process">How it works</a>
       <a href="skills.html">Skills</a>
       <a href="#pricing">Pricing</a>
@@ -1448,13 +1496,20 @@
   <!-- HERO -->
   <div class="hero">
     <div class="hero-text">
-      <div class="eyebrow">A hardening service, not a subscription</div>
-      <p class="hero-tension">OpenClaw is powerful, and dangerous by default.</p>
-      <h1 class="hero-statement">Want the upside of an autonomous agent without the <span class="accent">quiet liability?</span></h1>
+      <div class="hero-dots">
+        <span class="hero-dot active" data-idx="0"></span>
+        <span class="hero-dot" data-idx="1"></span>
+        <span class="hero-dot" data-idx="2"></span>
+      </div>
+      <h1 class="hero-statement">
+        <span class="headline-phrase active">OpenClaw is powerful, and <span class="accent">dangerous by default.</span></span>
+        <span class="headline-phrase">Want the upside of an autonomous agent without the <span class="accent">quiet liability?</span></span>
+        <span class="headline-phrase">I make it safe.<br>And I make it <span class="accent">yours.</span></span>
+      </h1>
       <p>I take the raw open-source agent, harden it by hand, and configure it to how you work. It runs on your own EU server, and it answers only to you.</p>
       <div class="hero-ctas">
         <a href="mailto:junotheclawagent@gmail.com" class="btn btn-primary">Book a 20-minute call</a>
-        <a href="#compare" class="btn btn-secondary">See what hardening means</a>
+        <a href="#what-we-do" class="btn btn-secondary">See what hardening means</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -1514,12 +1569,12 @@
     <div class="stat-caption">An 80% rejection rate isn't failure. It's the point. Honest numbers, updated as we learn.</div>
   </div>
 
-  <!-- WHAT MOST SETUPS MISS -->
-  <section id="how" style="scroll-margin-top: 80px;">
+  <!-- WHAT WE DO umbrella + honest comparison -->
+  <section id="what-we-do" style="scroll-margin-top: 80px;">
     <span id="compare" style="position: relative; top: -80px;"></span>
-    <div class="section-eyebrow">The honest comparison</div>
+    <div class="section-eyebrow">What we do</div>
     <h2 class="section-title">Twenty minutes, or a day done right.</h2>
-    <p class="section-intro">You can install OpenClaw yourself this afternoon. It'll work. It'll also be exposed to the internet, able to read your keys, and free to spend your money in a loop. Hardening is the part almost nobody does, because it's the part that takes real time and real care.</p>
+    <p class="section-intro">OpenClaw is free and open-source. Anyone can install it in twenty minutes. It'll work. It'll also be exposed to the internet, able to read your keys, and free to spend your money in a loop. Hardening is the part almost nobody does, because it's the part that takes real time and real care.</p>
 
     <div class="compare">
       <div class="compare-col diy">
@@ -1924,6 +1979,56 @@
     <p>OpenClaw Hardened is operated by Reehanul Karim, based in Milan, Italy.</p>
     <p>Built carefully. Sold honestly. Updated when something changes.</p>
   </footer>
+
+  <script>
+    // Rotating hero headlines, cycles every 6 seconds
+    (function() {
+      const phrases = document.querySelectorAll('.headline-phrase');
+      const dots = document.querySelectorAll('.hero-dot');
+      let current = 0;
+      let timer;
+
+      function goTo(next) {
+        const prev = current;
+        if (next === prev) return;
+
+        // Exit current
+        phrases[prev].classList.remove('active');
+        phrases[prev].classList.add('exiting');
+        dots[prev].classList.remove('active');
+
+        // Enter next
+        phrases[next].classList.add('active');
+        dots[next].classList.add('active');
+
+        setTimeout(() => {
+          phrases[prev].classList.remove('exiting');
+        }, 650);
+
+        current = next;
+      }
+
+      function advance() {
+        goTo((current + 1) % phrases.length);
+      }
+
+      function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(advance, 6000);
+      }
+
+      // Dot clicks jump directly
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+          goTo(i);
+          resetTimer();
+        });
+        dot.style.cursor = 'pointer';
+      });
+
+      resetTimer();
+    })();
+  </script>
 
 </body>
 </html>
